@@ -2,17 +2,19 @@ import discord
 import random
 import subprocess
 client = discord.Client();
-TOKEN = 'NzEwMTAwNjk5MTkwNTI2MDQy.XrvsGA.4CXIbOMHMmwGWcUm70cqYaPX9dg'
+TOKEN = open("token.key","r").readline().strip();
+# with open("token.key","rb") as f:
+#     TOKEN = f.readline();
 lock = 0
 @client.event
 async def on_ready():
     print("The bot is ready!")
     # await client.change_presence(activity=discord.Game(name="Grand Theft Auto"))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.Listening, name=" to comic "))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="people laugh"))
     # await client.change_presence(game=discord.Game(name="Making a bot"))
 
 prefix = "comic "
-commands = ["pong","pic","random","bun","xkcd","loven","commands"]
+commands = ["pong","ch","random","bun","xkcd","loven","commands","changeprefix"]
 commands.sort()
 # sort(commands)
 @client.event
@@ -22,13 +24,14 @@ async def on_message(message):
     if(message.content.startswith(prefix)):
         command = message.content[len(prefix):]
         print(command)
+        print(message.author)
         if(command == "ping"):
             await message.channel.send("pong");
         elif(command=="random"):
             await message.channel.send("Please wait sending a funny picture.")
             subprocess.call("./getmeme.sh",shell=True)
             await message.channel.send(file=discord.File('img.png'))
-        elif(command=="pic"):
+        elif(command=="ch"):
             await message.channel.send("Please wait sending a funny picture.")
             subprocess.call("./getmade.sh",shell=True)
             await message.channel.send(file=discord.File('meme.png'))
@@ -44,6 +47,12 @@ async def on_message(message):
             await message.channel.send("Please wait sending a funny picture.")
             subprocess.call('./getbuni.sh',shell=True)
             await message.channel.send(file=discord.File('bun.png'))
+        elif(command[:4]=="kill"):
+            # await message.channel.send("@%s who do you want to kill?"%message.author)
+            person1 = message.author.mention
+            id = command[5:]
+
+            await message.channel.send(f"{person1} is going to kill you %s" % id)
         elif(command=="commands"):
             reply = "The list of valid commands is "
             for c in commands :
