@@ -14,9 +14,9 @@ async def on_ready():
     # await client.change_presence(game=discord.Game(name="Making a bot"))
 
 prefix = "comic "
-commands = ["pong","ch","random","bun","xkcd","loven","commands","changeprefix"]
+commands = ["pong","ch","random","buni","xkcd","loven","commands","changeprefix"]
 commands.sort()
-# sort(commands)
+
 @client.event
 async def on_message(message):
     if(message.author==client.user):
@@ -43,16 +43,15 @@ async def on_message(message):
             await message.channel.send("Please wait sending a funny picture.")
             subprocess.call('./getloven.sh',shell=True)
             await message.channel.send(file=discord.File('loven.png'))
-        elif(command=="bun"):
+        elif(command=="buni"):
             await message.channel.send("Please wait sending a funny picture.")
             subprocess.call('./getbuni.sh',shell=True)
-            await message.channel.send(file=discord.File('bun.png'))
+            await message.channel.send(file=discord.File('buni.png'))
         elif(command[:4]=="kill"):
             # await message.channel.send("@%s who do you want to kill?"%message.author)
             person1 = message.author.mention
             id = command[5:]
-
-            await message.channel.send(f"{person1} is going to kill you %s" % id)
+            await message.channel.send(f"Sutron se pata chala hai ki %s ki hatya {person1} ke haathon hone wali h" % id)
         elif(command=="commands"):
             reply = "The list of valid commands is "
             for c in commands :
