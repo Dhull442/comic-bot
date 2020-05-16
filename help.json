@@ -1,0 +1,10 @@
+ping,Check if bot is online. Replies with `pong`.
+commands,Get a list of available commands.
+kill,Kill the mentioned user with the help of the user who planned it.
+help,Get the info about the mentioned command.
+ch,Fetch a random comic from Cyanide & Happiness universe.
+buni,Fetch a random comic from bunicomics.
+random,Fetch a random strip from the internet.
+xkcd,Fetch a random comic from xkcd universe.
+loven,Fetch a random comic from Mr. Lovenstein.
+garfield,Fetch a random comic from Garfield Universe.
